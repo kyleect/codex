@@ -1,29 +1,49 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
-export const Post = defineDocumentType(() => ({
-    name: 'Post',
-    filePathPattern: `**/*.md`,
+
+
+export const Location = defineDocumentType(() => ({
+    name: 'Location',
+    filePathPattern: `**/*.location.md`,
     fields: {
-        title: {
+        name: {
             type: 'string',
-            description: 'The title of the post',
-            required: true,
-        },
-        date: {
-            type: 'date',
-            description: 'The date of the post',
+            description: 'Name of location',
             required: true,
         },
     },
     computedFields: {
         url: {
             type: 'string',
-            resolve: (post) => `/posts/${post._raw.flattenedPath}`,
+            resolve: (location) => `/locations/${location.name}`,
+        },
+    },
+}))
+
+export const Being = defineDocumentType(() => ({
+    name: 'Being',
+    filePathPattern: `**/*.being.md`,
+    fields: {
+        name: {
+            type: 'string',
+            description: 'Name of being',
+            required: true,
+        },
+        birthPlace: {
+            type: 'reference',
+            of: Location,
+            embedDocument: true
+        }
+    },
+    computedFields: {
+        url: {
+            type: 'string',
+            resolve: (being) => `/beings/${being.name}`,
         },
     },
 }))
 
 export default makeSource({
-    contentDirPath: 'posts',
-    documentTypes: [Post],
+    contentDirPath: 'data',
+    documentTypes: [Location, Being],
 })
