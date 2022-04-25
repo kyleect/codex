@@ -1,6 +1,16 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { defineDocumentType, makeSource, defineNestedType } from 'contentlayer/source-files'
 
 
+export const LocationRef = defineNestedType(() => ({
+    name: 'LocationRef',
+    fields: {
+        location: {
+            type: 'reference',
+            of: Location,
+            embedDocument: true
+        },
+    }
+}));
 
 export const Location = defineDocumentType(() => ({
     name: 'Location',
@@ -29,11 +39,22 @@ export const Being = defineDocumentType(() => ({
             description: 'Name of being',
             required: true,
         },
-        birthPlace: {
-            type: 'reference',
-            of: Location,
-            embedDocument: true
-        }
+        age: {
+            type: 'string',
+            description: 'Age of being',
+        },
+        eyes: {
+            type: 'string',
+            description: 'Eye color',
+        },
+        hair: {
+            type: 'string',
+            description: 'Hair color',
+        },
+        skin: {
+            type: 'string',
+            description: 'Skin color',
+        },
     },
     computedFields: {
         url: {
