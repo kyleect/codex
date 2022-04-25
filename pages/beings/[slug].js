@@ -35,7 +35,6 @@ const PostLayout = ({ being }) => {
                 <div className="mb-6 text-center">
                     <h1 className="mb-1 text-3xl font-bold">{being.name}</h1>
                 </div>
-                <p>Birthplace: <Link href={`/locations/${being.birthPlace.name}`}><a>{being.birthPlace.name}</a></Link></p>
                 <div className="cl-post-body" dangerouslySetInnerHTML={{ __html: being.body.html }} />
             </article>
         </>
