@@ -54,7 +54,26 @@ export const Being = defineDocumentType(() => ({
     },
 }))
 
+export const Thing = defineDocumentType(() => ({
+    name: 'Thing',
+    contentType: 'mdx',
+    filePathPattern: `**/*.thing.md`,
+    fields: {
+        name: {
+            type: 'string',
+            description: 'Name of thing',
+            required: true,
+        },
+    },
+    computedFields: {
+        url: {
+            type: 'string',
+            resolve: (thing) => `/things/${thing.name}`,
+        },
+    },
+}))
+
 export default makeSource({
     contentDirPath: 'data',
-    documentTypes: [Location, Being],
+    documentTypes: [Location, Being, Thing],
 })

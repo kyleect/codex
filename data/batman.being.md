@@ -1,6 +1,5 @@
 ---
 name: Batman
-aliases: ["Bruce Wayne"]
 ---
 
-[Gotham City's](/locations/Gotham%20City) protector.
+[Gotham City's](/locations/Gotham%20City) protector. Drives the [Bat Mobile](/things/Bat%20Mobile). Known arch enemies: [Joker](/beings/Joker).
