@@ -1,30 +1,57 @@
 import Link from "next/link";
-import Head from 'next/head'
+import Head from "next/head";
+import {
+  Box,
+  Container,
+  Heading,
+  HStack,
+  ListItem,
+  UnorderedList,
+} from "@chakra-ui/react";
 
-export default function Layout({children}) {
-    return (
-        <>
-            <Head>
-                <title>Codex</title>
-            </Head>
+export default function Layout({ children }) {
+  return (
+    <>
+      <Head>
+        <title>Codex</title>
+      </Head>
 
+      <Container>
+        <section>
+          <Heading as="h1">
+            <Link href="/">
+              <a>Codex</a>
+            </Link>
+          </Heading>
 
-            <section>
-                <h1><Link href="/"><a>Codex</a></Link></h1>
+          <Box marginBottom={5}>
+            <HStack>
+              <Box>
+                <Link href="/beings">
+                  <a>Beings</a>
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/locations">
+                  <a>Locations</a>
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/things">
+                  <a>Things</a>
+                </Link>
+              </Box>
+              <Box>
+                <Link href="/events">
+                  <a>Events</a>
+                </Link>
+              </Box>
+            </HStack>
+          </Box>
+        </section>
 
-                <nav>
-                    <ul>
-                        <li><Link href="/beings"><a>Beings</a></Link></li>
-                        <li><Link href="/locations"><a>Locations</a></Link></li>
-                        <li><Link href="/things"><a>Things</a></Link></li>
-                        <li><Link href="/events"><a>Events</a></Link></li>
-                    </ul>
-                </nav>
-            </section>
-
-            <main>
-                {children}
-            </main>
-        </>
-    )
+        <Box p={0}>{children}</Box>
+      </Container>
+    </>
+  );
 }

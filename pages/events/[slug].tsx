@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import { allEvents, Event } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -28,15 +29,13 @@ const ViewEvent = ({ event }: Props) => {
 
   return (
     <>
-      <h2>Events</h2>
+      <Heading marginBottom={5}>Events</Heading>
 
-      <article className="mx-auto max-w-2xl py-16">
-        <div className="mb-6 text-center">
-          <h3 className="mb-1 text-3xl font-bold">{event.name}</h3>
-        </div>
-        <p>
-          {event.start}--{event.end}
-        </p>
+      <article>
+        <Heading as="h3" marginBottom={5}>
+          {event.name}
+        </Heading>
+
         <MDX components={mdxComponents} />
       </article>
     </>
