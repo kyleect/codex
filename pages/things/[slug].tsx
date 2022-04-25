@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import { allThings, Thing } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -28,12 +29,13 @@ const ViewThing = ({ thing }: Props) => {
 
   return (
     <>
-      <h2>Things</h2>
+      <Heading marginBottom={5}>Things</Heading>
 
-      <article className="mx-auto max-w-2xl py-16">
-        <div className="mb-6 text-center">
-          <h3 className="mb-1 text-3xl font-bold">{thing.name}</h3>
-        </div>
+      <article>
+        <Heading as="h3" marginBottom={5}>
+          {thing.name}
+        </Heading>
+
         <MDX components={mdxComponents} />
       </article>
     </>

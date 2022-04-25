@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import { allLocations, Location as ViewLocation } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -30,12 +31,13 @@ const ViewLocation = ({ location }: Props) => {
 
   return (
     <>
-      <h2>Locations</h2>
+      <Heading marginBottom={5}>Locations</Heading>
 
-      <article className="mx-auto max-w-2xl py-16">
-        <div className="mb-6 text-center">
-          <h3 className="mb-1 text-3xl font-bold">{location.name}</h3>
-        </div>
+      <article>
+        <Heading as="h3" marginBottom={5}>
+          {location.name}
+        </Heading>
+
         <MDX components={mdxComponents} />
       </article>
     </>

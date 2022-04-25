@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import { allBeings, Being } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -28,12 +29,13 @@ const ViewBeing = ({ being }: Props) => {
 
   return (
     <>
-      <h2>Beings</h2>
+      <Heading marginBottom={5}>Beings</Heading>
 
-      <article className="mx-auto max-w-2xl py-16">
-        <div className="mb-6 text-center">
-          <h3 className="mb-1 text-3xl font-bold">{being.name}</h3>
-        </div>
+      <article>
+        <Heading as="h3" marginBottom={5}>
+          {being.name}
+        </Heading>
+
         <MDX components={mdxComponents} />
       </article>
     </>

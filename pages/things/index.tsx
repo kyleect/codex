@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { allThings, Thing } from "contentlayer/generated";
+import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 
 export async function getStaticProps() {
   return { props: { things: allThings } };
@@ -12,17 +13,17 @@ type Props = {
 export default function ListBeings({ things }: Props) {
   return (
     <>
-      <h2>Things</h2>
+      <Heading marginBottom={5}>Things</Heading>
 
-      <ul>
+      <UnorderedList>
         {things.map((thing, idx) => (
-          <li key={idx}>
+          <ListItem key={idx}>
             <Link href={thing.url}>
-              <a className="text-blue-700 hover:text-blue-900">{thing.name}</a>
+              <a>{thing.name}</a>
             </Link>
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </UnorderedList>
     </>
   );
 }
