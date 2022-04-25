@@ -24,7 +24,7 @@ jobs:
 
       - name: Build my App
         run: npm run build && npm run export && touch ./out/.nojekyll
-        with:
+        env:
           NODE_ENV: production
 
       - name: Deploy 🚀
