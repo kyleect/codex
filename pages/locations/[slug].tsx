@@ -1,4 +1,6 @@
-import { allLocations, Location } from "contentlayer/generated";
+import { allLocations, Location as ViewLocation } from "contentlayer/generated";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { mdxComponents } from "src";
 
 export async function getStaticPaths() {
   const paths = allLocations.map((location) => location.url);
@@ -20,10 +22,12 @@ export async function getStaticProps({ params }) {
 }
 
 type Props = {
-  location: Location;
+  location: ViewLocation;
 };
 
-const PostLayout = ({ location }: Props) => {
+const ViewLocation = ({ location }: Props) => {
+  const MDX = useMDXComponent(location.body.code);
+
   return (
     <>
       <h2>Locations</h2>
@@ -32,13 +36,10 @@ const PostLayout = ({ location }: Props) => {
         <div className="mb-6 text-center">
           <h3 className="mb-1 text-3xl font-bold">{location.name}</h3>
         </div>
-        <div
-          className="cl-post-body"
-          dangerouslySetInnerHTML={{ __html: (location.body as any).html }}
-        />
+        <MDX components={mdxComponents} />
       </article>
     </>
   );
 };
 
-export default PostLayout;
+export default ViewLocation;

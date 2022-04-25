@@ -1,4 +1,6 @@
 import { allBeings, Being } from "contentlayer/generated";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { mdxComponents } from "src";
 
 export async function getStaticPaths() {
   const paths = allBeings.map((being) => being.url);
@@ -21,7 +23,9 @@ type Props = {
   being: Being;
 };
 
-const PostLayout = ({ being }: Props) => {
+const ViewBeing = ({ being }: Props) => {
+  const MDX = useMDXComponent(being.body.code);
+
   return (
     <>
       <h2>Beings</h2>
@@ -30,13 +34,10 @@ const PostLayout = ({ being }: Props) => {
         <div className="mb-6 text-center">
           <h3 className="mb-1 text-3xl font-bold">{being.name}</h3>
         </div>
-        <div
-          className="cl-post-body"
-          dangerouslySetInnerHTML={{ __html: (being.body as any).html }}
-        />
+        <MDX components={mdxComponents} />
       </article>
     </>
   );
 };
 
-export default PostLayout;
+export default ViewBeing;

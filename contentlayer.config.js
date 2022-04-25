@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
 export const Location = defineDocumentType(() => ({
     name: 'Location',
+    contentType: 'mdx',
     filePathPattern: `**/*.location.md`,
     fields: {
         name: {
@@ -20,6 +21,7 @@ export const Location = defineDocumentType(() => ({
 
 export const Being = defineDocumentType(() => ({
     name: 'Being',
+    contentType: 'mdx',
     filePathPattern: `**/*.being.md`,
     fields: {
         name: {

@@ -9,7 +9,7 @@ type Props = {
   beings: Being[];
 };
 
-export default function Home({ beings }: Props) {
+export default function ListBeings({ beings }: Props) {
   return (
     <>
       <h2>Beings</h2>
