@@ -1,16 +1,4 @@
-import { defineDocumentType, makeSource, defineNestedType } from 'contentlayer/source-files'
-
-
-export const LocationRef = defineNestedType(() => ({
-    name: 'LocationRef',
-    fields: {
-        location: {
-            type: 'reference',
-            of: Location,
-            embedDocument: true
-        },
-    }
-}));
+import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 
 export const Location = defineDocumentType(() => ({
     name: 'Location',
