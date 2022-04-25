@@ -1,6 +1,3 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { format, parseISO } from 'date-fns'
 import { allBeings } from 'contentlayer/generated'
 
 export async function getStaticPaths() {
@@ -23,17 +20,11 @@ export async function getStaticProps({ params }) {
 const PostLayout = ({ being }) => {
     return (
         <>
-            <Head>
-                <title>{being.name}</title>
-            </Head>
+            <h2>Beings</h2>
+
             <article className="mx-auto max-w-2xl py-16">
                 <div className="mb-6 text-center">
-                    <Link href="/">
-                        <a className="text-center text-sm font-bold uppercase text-blue-700">Home</a>
-                    </Link>
-                </div>
-                <div className="mb-6 text-center">
-                    <h1 className="mb-1 text-3xl font-bold">{being.name}</h1>
+                    <h3 className="mb-1 text-3xl font-bold">{being.name}</h3>
                 </div>
                 <div className="cl-post-body" dangerouslySetInnerHTML={{ __html: being.body.html }} />
             </article>
