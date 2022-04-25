@@ -73,7 +73,36 @@ export const Thing = defineDocumentType(() => ({
     },
 }))
 
+export const Event = defineDocumentType(() => ({
+    name: 'Event',
+    contentType: 'mdx',
+    filePathPattern: `**/*.event.md`,
+    fields: {
+        name: {
+            type: 'string',
+            description: 'Name of event',
+            required: true,
+        },
+        start: {
+            type: 'string',
+            description: 'Start of event',
+            required: true,
+        },
+        end: {
+            type: 'string',
+            description: 'End of event',
+            required: false,
+        },
+    },
+    computedFields: {
+        url: {
+            type: 'string',
+            resolve: (event) => `/events/${event.name}`,
+        },
+    },
+}))
+
 export default makeSource({
     contentDirPath: 'data',
-    documentTypes: [Location, Being, Thing],
+    documentTypes: [Location, Being, Thing, Event],
 })

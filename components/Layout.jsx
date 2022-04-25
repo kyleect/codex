@@ -17,6 +17,7 @@ export default function Layout({children}) {
                         <li><Link href="/beings"><a>Beings</a></Link></li>
                         <li><Link href="/locations"><a>Locations</a></Link></li>
                         <li><Link href="/things"><a>Things</a></Link></li>
+                        <li><Link href="/events"><a>Events</a></Link></li>
                     </ul>
                 </nav>
             </section>
