@@ -1,4 +1,5 @@
 import { Divider, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import BeingLink from "components/BeingLink";
 import { allBeings, Being } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";
@@ -47,9 +48,7 @@ const ViewBeing = ({ being }: Props) => {
               {being.aliases.map((alias, i) => {
                 return (
                   <ListItem key={i}>
-                    <Link href={`/beings/${alias}`}>
-                      <a>{alias}</a>
-                    </Link>
+                    <BeingLink name={alias} />
                   </ListItem>
                 );
               })}
