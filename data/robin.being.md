@@ -1,4 +1,4 @@
 ---
 name: Robin
-aliases: ["Jason Todd"]
+aliases: ["Dick Grayson", "Jason Todd"]
 ---
