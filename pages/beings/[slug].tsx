@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 import { allBeings, Being } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -35,6 +35,14 @@ const ViewBeing = ({ being }: Props) => {
         <Heading as="h3" marginBottom={5}>
           {being.name}
         </Heading>
+
+        {being.aliases ?? (
+          <UnorderedList>
+            {being.aliases.map((alias) => {
+              return <ListItem>{alias}</ListItem>;
+            })}
+          </UnorderedList>
+        )}
 
         <MDX components={mdxComponents} />
       </article>
