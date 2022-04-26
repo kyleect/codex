@@ -1,6 +1,7 @@
-import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Divider, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
 import { allBeings, Being } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import Link from "next/link";
 import { mdxComponents } from "src";
 
 export async function getStaticPaths() {
@@ -36,13 +37,29 @@ const ViewBeing = ({ being }: Props) => {
           {being.name}
         </Heading>
 
-        {being.aliases ?? (
-          <UnorderedList>
-            {being.aliases.map((alias) => {
-              return <ListItem>{alias}</ListItem>;
-            })}
-          </UnorderedList>
+        {being.aliases && (
+          <>
+            <Heading as="h4" my={5}>
+              Aliases
+            </Heading>
+
+            <UnorderedList>
+              {being.aliases.map((alias, i) => {
+                return (
+                  <ListItem key={i}>
+                    <Link href={`/beings/${alias}`}>
+                      <a>{alias}</a>
+                    </Link>
+                  </ListItem>
+                );
+              })}
+            </UnorderedList>
+          </>
         )}
+
+        <Heading as="h4" my={5}>
+          Description
+        </Heading>
 
         <MDX components={mdxComponents} />
       </article>

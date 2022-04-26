@@ -31,6 +31,7 @@ export const Being = defineDocumentType(() => ({
     },
     aliases: {
       type: "json",
+      required: false
     },
     age: {
       type: "string",
