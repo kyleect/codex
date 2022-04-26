@@ -2,4 +2,4 @@
 name: Bat Mobile
 ---
 
-<Being name="Batman"/>'s car.
+<Being>Batman</Being>'s car.

@@ -10,8 +10,8 @@ export const mdxComponents = {
       <a {...props}>{children}</a>
     </Link>
   ),
-  Being: BeingLink,
-  Location: LocationLink,
-  Thing: ThingLink,
-  Event: EventLink,
+  Being: ({ children }) => <BeingLink name={children} />,
+  Location: ({ children }) => <LocationLink name={children} />,
+  Thing: ({ children }) => <ThingLink name={children} />,
+  Event: ({ children }) => <EventLink name={children} />,
 };
