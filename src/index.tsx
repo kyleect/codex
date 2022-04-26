@@ -1,3 +1,7 @@
+import BeingLink from "components/BeingLink";
+import EventLink from "components/EventLink";
+import LocationLink from "components/LocationLink";
+import ThingLink from "components/ThingLink";
 import Link from "next/link";
 
 export const mdxComponents = {
@@ -6,4 +10,8 @@ export const mdxComponents = {
       <a {...props}>{children}</a>
     </Link>
   ),
+  Being: BeingLink,
+  Location: LocationLink,
+  Thing: ThingLink,
+  Event: EventLink,
 };

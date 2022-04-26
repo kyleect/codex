@@ -3,4 +3,4 @@ name: Bruce Wayne
 aliases: ["Batman"]
 ---
 
-Secretly [Batman](/beings/Batman).
+Secretly <Being name="Batman"/>.

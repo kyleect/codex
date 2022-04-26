@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Being, allBeings } from "contentlayer/generated";
+import { allBeings } from "contentlayer/generated";
 
 type Props = {
   name: string;
@@ -13,6 +13,6 @@ export default function BeingLink({ name }: Props) {
       <a>{being.name}</a>
     </Link>
   ) : (
-    <span>{being.name}</span>
+    <span>{name}</span>
   );
 }

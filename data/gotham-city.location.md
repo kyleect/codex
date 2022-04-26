@@ -2,4 +2,4 @@
 name: Gotham City
 ---
 
-Under the protection of [Batman](/beings/Batman). Often under attach from villians such as [Joker](/beings/Joker).
+Under the protection of <Being name="Batman"/>. Often under attach from villians such as <Being name="Joker"/>.

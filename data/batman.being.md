@@ -3,4 +3,4 @@ name: Batman
 aliases: ["Bruce Wayne"]
 ---
 
-[Gotham City's](/locations/Gotham%20City) protector. Drives the [Bat Mobile](/things/Bat%20Mobile). Known arch enemies: [Joker](/beings/Joker).
+<Location name="Gotham City"/> protector. Drives the <Thing name="Bat Mobile"/>. Known arch enemies: <Being name="Joker" />.
