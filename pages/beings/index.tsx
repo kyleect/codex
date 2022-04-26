@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { allBeings, Being } from "contentlayer/generated";
 import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import BeingLink from "components/BeingLink";
 
 export async function getStaticProps() {
   return { props: { beings: allBeings } };
@@ -18,9 +19,7 @@ export default function ListBeings({ beings }: Props) {
       <UnorderedList>
         {beings.map((being, idx) => (
           <ListItem key={idx}>
-            <Link href={being.url}>
-              <a>{being.name}</a>
-            </Link>
+            <BeingLink name={being.name} />
           </ListItem>
         ))}
       </UnorderedList>
