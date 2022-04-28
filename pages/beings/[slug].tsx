@@ -43,11 +43,15 @@ const ViewBeing = ({ being }: Props) => {
       <article>
         <Heading as="h3">{being.name}</Heading>
 
-        <Flex direction="row-reverse" justifyContent="flex-end">
-          <Box p={3}>
+        <Flex
+          direction="row-reverse"
+          justifyContent="flex-end"
+          alignItems="flex-start"
+        >
+          <Box py={3} mx={5} flexGrow={1}>
             {being.aliases && (
               <>
-                <Heading as="h4" my={5} size="lg">
+                <Heading as="h4" size="lg" pb={5}>
                   Aliases
                 </Heading>
 
@@ -65,7 +69,7 @@ const ViewBeing = ({ being }: Props) => {
 
             {being.placeOfOrigin && (
               <>
-                <Heading as="h4" my={5} size="lg">
+                <Heading as="h4" size="lg" py={5}>
                   Place Of Origin
                 </Heading>
 
@@ -75,7 +79,7 @@ const ViewBeing = ({ being }: Props) => {
 
             {being.placeOfResidence && (
               <>
-                <Heading as="h4" my={5} size="lg">
+                <Heading as="h4" size="lg" py={5}>
                   Place Of Residence
                 </Heading>
 
@@ -84,8 +88,8 @@ const ViewBeing = ({ being }: Props) => {
             )}
           </Box>
 
-          <Box>
-            <Heading as="h4" my={5} size="lg">
+          <Box py={3} flexGrow={4}>
+            <Heading as="h4" size="lg" pb={5}>
               Description
             </Heading>
 
