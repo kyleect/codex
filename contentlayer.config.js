@@ -33,6 +33,12 @@ export const Being = defineDocumentType(() => ({
       type: "json",
       required: false
     },
+    placeOfOrigin: {
+      type: 'string'
+    },
+    placeOfResidence: {
+      type: 'string'
+    },
     age: {
       type: "string",
       description: "Age of being",
