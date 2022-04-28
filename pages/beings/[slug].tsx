@@ -50,7 +50,7 @@ const ViewBeing = ({ being }: Props) => {
         >
           <Box py={3} mx={5} flexGrow={1}>
             {being.aliases && (
-              <>
+              <Box mb={5}>
                 <Heading as="h4" size="lg" pb={5}>
                   Aliases
                 </Heading>
@@ -64,27 +64,27 @@ const ViewBeing = ({ being }: Props) => {
                     );
                   })}
                 </UnorderedList>
-              </>
+              </Box>
             )}
 
             {being.placeOfOrigin && (
-              <>
-                <Heading as="h4" size="lg" py={5}>
+              <Box mb={5}>
+                <Heading as="h4" size="lg" pb={5}>
                   Place Of Origin
                 </Heading>
 
                 <LocationLink name={being.placeOfOrigin} />
-              </>
+              </Box>
             )}
 
             {being.placeOfResidence && (
-              <>
-                <Heading as="h4" size="lg" py={5}>
+              <Box mb={5}>
+                <Heading as="h4" size="lg" pb={5}>
                   Place Of Residence
                 </Heading>
 
                 <LocationLink name={being.placeOfResidence} />
-              </>
+              </Box>
             )}
           </Box>
 
