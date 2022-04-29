@@ -1,3 +1,4 @@
+import { Text } from "@chakra-ui/react";
 import BeingLink from "components/BeingLink";
 import EventLink from "components/EventLink";
 import LocationLink from "components/LocationLink";
@@ -10,6 +11,7 @@ export const mdxComponents = {
       <a {...props}>{children}</a>
     </Link>
   ),
+  p: Text,
   Being: ({ children }) => <BeingLink name={children} />,
   Location: ({ children }) => <LocationLink name={children} />,
   Thing: ({ children }) => <ThingLink name={children} />,
