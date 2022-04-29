@@ -5,7 +5,10 @@ export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <meta name="description" content="A universe documentation tool" />
+        </Head>
+
         <body>
           {/* 👇 Here's the script */}
           <ColorModeScript initialColorMode="system" />
