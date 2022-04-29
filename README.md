@@ -2,6 +2,8 @@
 
 # Codex
 
-An app designed to help with world building documentation written with [Next.js](https://nextjs.org/) and [contentlayer](https://www.contentlayer.dev/).
+A universe documentation tool.
 
 http://kyleect.github.io/codex/
+
+Written with [Next.js](https://nextjs.org/) and [contentlayer](https://www.contentlayer.dev/).
