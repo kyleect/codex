@@ -3,7 +3,12 @@ import { Article } from "components/Article";
 import BeingLink from "components/BeingLink";
 import { InfoPanel } from "components/InfoPanel";
 import LocationLink from "components/LocationLink";
-import { allLocations, allBeings, Location } from "contentlayer/generated";
+import {
+  allLocations,
+  allBeings,
+  Location,
+  Being,
+} from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
 
@@ -19,19 +24,6 @@ export async function getStaticProps({ params }) {
   const location = allLocations.find(
     (location) => location.name === params.slug
   );
-  return {
-    props: {
-      location,
-    },
-  };
-}
-
-type Props = {
-  location: Location;
-};
-
-const ViewLocation = ({ location }: Props) => {
-  const MDX = useMDXComponent(location.body.code);
 
   const limitResidentsTo = 5;
 
@@ -40,6 +32,24 @@ const ViewLocation = ({ location }: Props) => {
     .filter((being) => being.placeOfResidence === location.name);
 
   const destinations = allLocations.filter((l) => l.located === location.name);
+
+  return {
+    props: {
+      location,
+      residents,
+      destinations,
+    },
+  };
+}
+
+type Props = {
+  location: Location;
+  residents: Being[];
+  destinations: Location[];
+};
+
+const ViewLocation = ({ location, destinations, residents }: Props) => {
+  const MDX = useMDXComponent(location.body.code);
 
   return (
     <Article
