@@ -103,9 +103,9 @@ type SearchResultProps = {
 function SearchResults({ results, onClick }: SearchResultProps) {
   return (
     <UnorderedList>
-      {results.map((result) => {
+      {results.map((result, i) => {
         return (
-          <ListItem>
+          <ListItem key={i}>
             <Link href={result.url}>
               <a onClick={onClick}>
                 {result.name} <Tag>{result.type}</Tag>
