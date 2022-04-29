@@ -10,6 +10,10 @@ export const Location = defineDocumentType(() => ({
       description: "Name of location",
       required: true,
     },
+    located: {
+      type: "string",
+      description: "Where is this location located?"
+    }
   },
   computedFields: {
     url: {

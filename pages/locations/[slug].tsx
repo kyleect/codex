@@ -2,6 +2,7 @@ import { Box, Heading, ListItem, Tag, UnorderedList } from "@chakra-ui/react";
 import { Article } from "components/Article";
 import BeingLink from "components/BeingLink";
 import { InfoPanel } from "components/InfoPanel";
+import LocationLink from "components/LocationLink";
 import { allLocations, allBeings, Location } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -32,9 +33,11 @@ type Props = {
 const ViewLocation = ({ location }: Props) => {
   const MDX = useMDXComponent(location.body.code);
 
-  const residents = allBeings.filter(
-    (being) => being.placeOfResidence === location.name
-  );
+  const limitResidentsTo = 5;
+
+  const residents = allBeings
+    .slice(0, limitResidentsTo)
+    .filter((being) => being.placeOfResidence === location.name);
 
   return (
     <Article
@@ -53,6 +56,12 @@ const ViewLocation = ({ location }: Props) => {
       }
       side={
         <>
+          {location.located && (
+            <InfoPanel as="h4" title="Located">
+              <LocationLink name={location.located} />
+            </InfoPanel>
+          )}
+
           {residents.length > 0 && (
             <InfoPanel as="h4" title="Residents">
               <UnorderedList>
