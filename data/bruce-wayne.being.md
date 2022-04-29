@@ -1,6 +1,7 @@
 ---
 name: Bruce Wayne
-aliases: ["Batman"]
+aliases:
+  - Batman
 ---
 
 Secretly <Being>Batman</Being>.

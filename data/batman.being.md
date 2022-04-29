@@ -1,6 +1,8 @@
 ---
 name: Batman
-aliases: ["Bruce Wayne", "The Dark Knight"]
+aliases:
+  - Bruce Wayne
+  - The Dark Knight
 placeOfOrigin: Gotham City
 placeOfResidence: Gotham City
 ---
