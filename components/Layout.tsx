@@ -1,38 +1,35 @@
 import Link from "next/link";
 import Head from "next/head";
-import {
-  Box,
-  Container,
-  Heading,
-  HStack,
-  Input,
-  ListItem,
-  Tag,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Container, Heading, HStack, Input } from "@chakra-ui/react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { allDocuments, DocumentTypes } from "contentlayer/generated";
+import { SearchModal } from "./SearchModal";
 
 export default function Layout({ children }) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<DocumentTypes[]>([]);
+  const [displaySearch, setDisplaySearch] = useState<boolean>(false);
 
-  const onChange = (e) => setSearchQuery(e.target.value);
+  const onChange = useCallback((e) => setSearchQuery(e.target.value), []);
+  const onSearchFocus = useCallback((e) => setDisplaySearch(true), []);
 
-  const onClick = (e: any) => {
-    debugger;
+  const resetSearchModal = useCallback(() => {
+    setDisplaySearch(false);
     setSearchQuery("");
     setSearchResults([]);
-  };
+  }, []);
 
   useEffect(() => {
-    const results = allDocuments.filter((doc) =>
-      doc.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    if (searchQuery.length > 0) {
+      const results = allDocuments.filter((doc) =>
+        doc.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
-    setSearchResults(results);
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
   }, [searchQuery]);
 
   return (
@@ -75,45 +72,19 @@ export default function Layout({ children }) {
           </Box>
         </section>
 
-        <Box>
-          <Input
-            value={searchQuery}
-            onChange={onChange}
-            placeholder="Search"
-            mt={1}
-            mb={5}
-          />
-        </Box>
+        <Input placeholder="Search" mt={1} mb={5} onFocus={onSearchFocus} />
 
-        {searchQuery ? (
-          <SearchResults results={searchResults} onClick={onClick} />
-        ) : (
-          <Box>{children}</Box>
-        )}
+        <Box>{children}</Box>
+
+        <SearchModal
+          isOpen={displaySearch}
+          value={searchQuery}
+          onChange={onChange}
+          onClose={resetSearchModal}
+          onClickSearchResult={resetSearchModal}
+          searchResults={searchResults}
+        />
       </Container>
     </>
-  );
-}
-
-type SearchResultProps = {
-  results: DocumentTypes[];
-  onClick: any;
-};
-
-function SearchResults({ results, onClick }: SearchResultProps) {
-  return (
-    <UnorderedList>
-      {results.map((result, i) => {
-        return (
-          <ListItem key={i}>
-            <Link href={result.url}>
-              <a onClick={onClick}>
-                {result.name} <Tag>{result.type}</Tag>
-              </a>
-            </Link>
-          </ListItem>
-        );
-      })}
-    </UnorderedList>
   );
 }
