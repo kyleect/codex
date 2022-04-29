@@ -39,6 +39,8 @@ const ViewLocation = ({ location }: Props) => {
     .slice(0, limitResidentsTo)
     .filter((being) => being.placeOfResidence === location.name);
 
+  const destinations = allLocations.filter((l) => l.located === location.name);
+
   return (
     <Article
       main={
@@ -59,6 +61,18 @@ const ViewLocation = ({ location }: Props) => {
           {location.located && (
             <InfoPanel as="h4" title="Located">
               <LocationLink name={location.located} />
+            </InfoPanel>
+          )}
+
+          {destinations.length > 0 && (
+            <InfoPanel as="h4" title="Locations">
+              <UnorderedList>
+                {destinations.map((destination, i) => (
+                  <ListItem key={i}>
+                    <LocationLink name={destination.name} />
+                  </ListItem>
+                ))}
+              </UnorderedList>
             </InfoPanel>
           )}
 
