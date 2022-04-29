@@ -12,7 +12,10 @@ export default function Layout({ children }) {
   const [displaySearch, setDisplaySearch] = useState<boolean>(false);
 
   const onChange = useCallback((e) => setSearchQuery(e.target.value), []);
-  const onSearchFocus = useCallback((e) => setDisplaySearch(true), []);
+  const onSearchFocus = useCallback((e) => {
+    setDisplaySearch(true);
+    e.currentTarget.blur();
+  }, []);
 
   const resetSearchModal = useCallback(() => {
     setDisplaySearch(false);
