@@ -1,5 +1,7 @@
-import { Box, Flex, Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Article } from "components/Article";
 import BeingLink from "components/BeingLink";
+import { InfoPanel } from "components/InfoPanel";
 import { allLocations, allBeings, Location } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -35,39 +37,32 @@ const ViewLocation = ({ location }: Props) => {
   );
 
   return (
-    <>
-      <article>
-        <Flex>
-          <Box py={3} flexGrow={4}>
-            <Heading as="h3" marginBottom={5}>
-              {location.name}
-            </Heading>
+    <Article
+      main={
+        <>
+          <Heading as="h3" marginBottom={5}>
+            {location.name}
+          </Heading>
 
-            <MDX components={mdxComponents} />
-          </Box>
-
-          <Box py={3} mx={5} flexGrow={1}>
-            {residents.length > 0 && (
-              <Box mb={5}>
-                <Heading as="h4" size="lg" pb={5}>
-                  Residents
-                </Heading>
-
-                <UnorderedList>
-                  {residents.map((resident, i) => {
-                    return (
-                      <ListItem key={i}>
-                        <BeingLink name={resident.name} />
-                      </ListItem>
-                    );
-                  })}
-                </UnorderedList>
-              </Box>
-            )}
-          </Box>
-        </Flex>
-      </article>
-    </>
+          <MDX components={mdxComponents} />
+        </>
+      }
+      side={
+        <>
+          {residents.length > 0 && (
+            <InfoPanel as="h4" title="Residents">
+              <UnorderedList>
+                {residents.map((resident, i) => (
+                  <ListItem key={i}>
+                    <BeingLink name={resident.name} />
+                  </ListItem>
+                ))}
+              </UnorderedList>
+            </InfoPanel>
+          )}
+        </>
+      }
+    />
   );
 };
 

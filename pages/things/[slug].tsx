@@ -1,4 +1,5 @@
 import { Heading } from "@chakra-ui/react";
+import { Article } from "components/Article";
 import { allThings, Thing } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { mdxComponents } from "src";
@@ -28,17 +29,17 @@ const ViewThing = ({ thing }: Props) => {
   const MDX = useMDXComponent(thing.body.code);
 
   return (
-    <>
-      <Heading marginBottom={5}>Things</Heading>
+    <Article
+      main={
+        <>
+          <Heading as="h3" marginBottom={5}>
+            {thing.name}
+          </Heading>
 
-      <article>
-        <Heading as="h3" marginBottom={5}>
-          {thing.name}
-        </Heading>
-
-        <MDX components={mdxComponents} />
-      </article>
-    </>
+          <MDX components={mdxComponents} />
+        </>
+      }
+    />
   );
 };
 

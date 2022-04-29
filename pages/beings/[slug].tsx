@@ -1,18 +1,11 @@
-import {
-  Box,
-  Divider,
-  Flex,
-  Heading,
-  ListItem,
-  Text,
-  UnorderedList,
-} from "@chakra-ui/react";
+import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Article } from "components/Article";
 import BeingLink from "components/BeingLink";
 import LocationLink from "components/LocationLink";
 import { allBeings, Being } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import Link from "next/link";
 import { mdxComponents } from "src";
+import { InfoPanel } from "../../components/InfoPanel";
 
 export async function getStaticPaths() {
   const paths = allBeings.map((being) => being.url);
@@ -39,59 +32,46 @@ const ViewBeing = ({ being }: Props) => {
   const MDX = useMDXComponent(being.body.code);
 
   return (
-    <>
-      <article>
-        <Flex>
-          <Box py={3} flexGrow={4}>
-            <Heading as="h3" marginBottom={5}>
-              {being.name}
-            </Heading>
+    <Article
+      main={
+        <>
+          <Heading as="h3" marginBottom={5}>
+            {being.name}
+          </Heading>
 
-            <MDX components={mdxComponents} />
-          </Box>
+          <MDX components={mdxComponents} />
+        </>
+      }
+      side={
+        <>
+          {being.aliases && (
+            <InfoPanel as="h4" title="Aliases">
+              <UnorderedList>
+                {being.aliases.map((alias, i) => {
+                  return (
+                    <ListItem key={i}>
+                      <BeingLink name={alias} />
+                    </ListItem>
+                  );
+                })}
+              </UnorderedList>
+            </InfoPanel>
+          )}
 
-          <Box py={3} mx={5} flexGrow={1}>
-            {being.aliases && (
-              <Box mb={5}>
-                <Heading as="h4" size="lg" pb={5}>
-                  Aliases
-                </Heading>
+          {being.placeOfOrigin && (
+            <InfoPanel as="h4" title="Place Of Origin">
+              <LocationLink name={being.placeOfOrigin} />
+            </InfoPanel>
+          )}
 
-                <UnorderedList>
-                  {being.aliases.map((alias, i) => {
-                    return (
-                      <ListItem key={i}>
-                        <BeingLink name={alias} />
-                      </ListItem>
-                    );
-                  })}
-                </UnorderedList>
-              </Box>
-            )}
-
-            {being.placeOfOrigin && (
-              <Box mb={5}>
-                <Heading as="h4" size="lg" pb={5}>
-                  Place Of Origin
-                </Heading>
-
-                <LocationLink name={being.placeOfOrigin} />
-              </Box>
-            )}
-
-            {being.placeOfResidence && (
-              <Box mb={5}>
-                <Heading as="h4" size="lg" pb={5}>
-                  Place Of Residence
-                </Heading>
-
-                <LocationLink name={being.placeOfResidence} />
-              </Box>
-            )}
-          </Box>
-        </Flex>
-      </article>
-    </>
+          {being.placeOfResidence && (
+            <InfoPanel as="h4" title="Place Of Residence">
+              <LocationLink name={being.placeOfResidence} />
+            </InfoPanel>
+          )}
+        </>
+      }
+    />
   );
 };
 
