@@ -4,9 +4,7 @@ import {
   Box,
   Container,
   Heading,
-  HStack,
-  ListItem,
-  UnorderedList,
+  HStack
 } from "@chakra-ui/react";
 
 export default function Layout({ children }) {
@@ -24,7 +22,7 @@ export default function Layout({ children }) {
             </Link>
           </Heading>
 
-          <Box marginBottom={5}>
+          <Box my={3}>
             <HStack>
               <Box>
                 <Link href="/beings">
@@ -50,7 +48,7 @@ export default function Layout({ children }) {
           </Box>
         </section>
 
-        <Box p={0}>{children}</Box>
+        <Box>{children}</Box>
       </Container>
     </>
   );
