@@ -1,4 +1,4 @@
-import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Box, Heading, ListItem, Tag, UnorderedList } from "@chakra-ui/react";
 import { Article } from "components/Article";
 import BeingLink from "components/BeingLink";
 import { InfoPanel } from "components/InfoPanel";
@@ -43,6 +43,10 @@ const ViewLocation = ({ location }: Props) => {
           <Heading as="h3" marginBottom={5}>
             {location.name}
           </Heading>
+
+          <Box pb={5}>
+            <Tag>Location</Tag>
+          </Box>
 
           <MDX components={mdxComponents} />
         </>

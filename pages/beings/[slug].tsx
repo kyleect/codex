@@ -1,4 +1,4 @@
-import { Heading, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Box, Heading, ListItem, Tag, UnorderedList } from "@chakra-ui/react";
 import { Article } from "components/Article";
 import BeingLink from "components/BeingLink";
 import LocationLink from "components/LocationLink";
@@ -38,6 +38,10 @@ const ViewBeing = ({ being }: Props) => {
           <Heading as="h3" marginBottom={5}>
             {being.name}
           </Heading>
+
+          <Box pb={5}>
+            <Tag>Being</Tag>
+          </Box>
 
           <MDX components={mdxComponents} />
         </>
