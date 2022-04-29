@@ -41,13 +41,15 @@ const ViewBeing = ({ being }: Props) => {
   return (
     <>
       <article>
-        <Heading as="h3">{being.name}</Heading>
+        <Flex>
+          <Box py={3} flexGrow={4}>
+            <Heading as="h3" marginBottom={5}>
+              {being.name}
+            </Heading>
 
-        <Flex
-          direction="row-reverse"
-          justifyContent="flex-end"
-          alignItems="flex-start"
-        >
+            <MDX components={mdxComponents} />
+          </Box>
+
           <Box py={3} mx={5} flexGrow={1}>
             {being.aliases && (
               <Box mb={5}>
@@ -86,14 +88,6 @@ const ViewBeing = ({ being }: Props) => {
                 <LocationLink name={being.placeOfResidence} />
               </Box>
             )}
-          </Box>
-
-          <Box py={3} flexGrow={4}>
-            <Heading as="h4" size="lg" pb={5}>
-              Description
-            </Heading>
-
-            <MDX components={mdxComponents} />
           </Box>
         </Flex>
       </article>
