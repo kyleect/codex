@@ -1,4 +1,5 @@
 import {
+  Box,
   Input,
   ListItem,
   Modal,
@@ -55,7 +56,9 @@ export function SearchModal({
         </ModalBody>
 
         <ModalFooter>
-          <Text>Results: {searchResults.length}</Text>
+          {searchResults.length > 0 && (
+            <Text>Results: {searchResults.length}</Text>
+          )}
         </ModalFooter>
       </ModalContent>
     </Modal>
@@ -69,13 +72,16 @@ type SearchResultProps = {
 
 function SearchResults({ results, onClickResult }: SearchResultProps) {
   return (
-    <UnorderedList>
+    <UnorderedList listStyleType="none" m={0}>
       {results.map((result, i) => {
         return (
-          <ListItem key={i}>
+          <ListItem key={i} p={2}>
             <Link href={result.url}>
               <a onClick={onClickResult}>
-                {result.name} <Tag>{result.type}</Tag>
+                <Text fontSize={"lg"} display="inline">
+                  {result.name}
+                </Text>{" "}
+                <Tag>{result.type}</Tag>
               </a>
             </Link>
           </ListItem>
