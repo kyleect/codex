@@ -56,9 +56,7 @@ export function SearchModal({
         </ModalBody>
 
         <ModalFooter>
-          {searchResults.length > 0 && (
-            <Text>Results: {searchResults.length}</Text>
-          )}
+          {value.length > 0 && <Text>Results: {searchResults.length}</Text>}
         </ModalFooter>
       </ModalContent>
     </Modal>
