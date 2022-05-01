@@ -76,7 +76,7 @@ function SearchResults({ results, onClickResult }: SearchResultProps) {
           <ListItem key={i} p={2}>
             <Link href={result.url}>
               <a onClick={onClickResult}>
-                <Text fontSize={"lg"} display="inline">
+                <Text fontSize={"lg"} display="inline" mr={3}>
                   {result.name}
                 </Text>{" "}
                 <Tag>{result.type}</Tag>
